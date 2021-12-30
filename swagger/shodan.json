@@ -1,0 +1,918 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "shodan",
+    "description": "This document was generated from the branch master.\n\nIf you are a contributor to this project, you may access it here: https://paw.cloud/account/teams/49002/projects/92450",
+    "version": "v0.0.0",
+    "contact": {
+      "name": "Zapfmeister",
+      "url": "https://paw.cloud/account/teams/49002"
+    }
+  },
+  "host": "api.shodan.io",
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/",
+  "paths": {
+    "/shodan/host/1.1.1.1": {
+      "get": {
+        "summary": "Host Information",
+        "description": "Returns all services that have been found on the given host IP",
+        "operationId": "41cf2c86-6b1e-4095-973e-f505023c7df5",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/host/count": {
+      "get": {
+        "summary": "Search Shodan without Results",
+        "description": "This method behaves identical to \"/shodan/host/search\" with the only difference that this method does not return any host results, it only returns the total number of results that matched the query and any facet information that was requested. As a result this method does not consume query credits.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters\n\nfacets (optional): [String] A comma-separated list of properties to get summary information on. Property names can also be in the format of \"property:count\", where \"count\" is the number of facets that will be returned for a property (i.e. \"country:100\" to get the top 100 countries for a search query). Visit the Shodan website's Facet Analysis page for an up-to-date list of available facets:\nhttps://beta.shodan.io/search/facet\n",
+        "operationId": "cdc63d58-3323-43d1-9a94-d1aaa9d1507b",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "port:22",
+            "name": "query",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "org, os",
+            "name": "facets",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/host/search": {
+      "get": {
+        "summary": "Search Shodan",
+        "description": "Search Shodan using the same query syntax as the website and use facets to get summary information for different properties.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters\n\nfacets (optional): [String] A comma-separated list of properties to get summary information on. Property names can also be in the format of \"property:count\", where \"count\" is the number of facets that will be returned for a property (i.e. \"country:100\" to get the top 100 countries for a search query). Visit the Shodan website's Facet Analysis page for an up-to-date list of available facets:\nhttps://beta.shodan.io/search/facet\n",
+        "operationId": "23d597e9-10c1-49c8-bd94-cfd220626d15",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "product:nginx",
+            "name": "query",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "org, os",
+            "name": "facets",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/host/search/facets": {
+      "get": {
+        "summary": "List all search facets",
+        "description": "This method returns a list of facets that can be used to get a breakdown of the top values for a property.\n\n",
+        "operationId": "c2edb28e-339c-4279-8e37-a5dba01c6997",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/host/search/filters": {
+      "get": {
+        "summary": "List all filters that can be used when searching",
+        "description": "This method returns a list of search filters that can be used in the search query.\n\n",
+        "operationId": "599db115-e811-4d91-95a4-9dc7a3a3a02b",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/host/search/tokens": {
+      "get": {
+        "summary": "Break the search query into tokens",
+        "description": "This method lets you determine which filters are being used by the query string and what parameters were provided to the filters.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters",
+        "operationId": "705b88da-0d39-4f7c-a074-17f288714c9b",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "product:nginx",
+            "name": "query",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/ports": {
+      "get": {
+        "summary": "List all ports that Shodan is crawling on the Internet",
+        "description": "This method returns a list of port numbers that the crawlers are looking for.",
+        "operationId": "0240f992-300e-43fa-bdc4-93ee006040aa",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "product:nginx",
+            "name": "query",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "org, os",
+            "name": "facets",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/protocols": {
+      "get": {
+        "summary": "List all protocols that can be used when performing on-demand Internet scans via Shodan",
+        "description": "This method returns a list of port numbers that the crawlers are looking for.",
+        "operationId": "23aaa045-42c5-4ae8-9e9a-b3badfb2df13",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "product:nginx",
+            "name": "query",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "org, os",
+            "name": "facets",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/scan": {
+      "post": {
+        "summary": "Request Shodan to crawl an IP/ netblock Internet scans via Shodan Duplicate",
+        "description": "Use this method to request Shodan to crawl a network.\n\nRequirements\nThis method uses API scan credits: 1 IP consumes 1 scan credit. You must have a paid API plan (either one-time payment or subscription) in order to use this method.\n\nParameters\nips: [String] A comma-separated list of IPs or netblocks (in CIDR notation) that should get crawled.\nservice: [Array] A list of services that should get scanned, where a service is defined as a [port, protocol].\n",
+        "operationId": "372f5407-8dcb-4c6b-8a7a-b150e03d4519",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "1.1.1.1,8.8.8.8",
+            "name": "ips",
+            "required": true,
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/scan/internet": {
+      "post": {
+        "summary": "Crawl the Internet for a specific port and protocol using Shodan Duplicate (2)",
+        "description": "Use this method to request Shodan to crawl the Internet for a specific port.\n\nRequirements\nThis method is restricted to security researchers and companies with a Shodan Enterprise Data license. To apply for access to this method as a researcher, please email jmath@shodan.io with information about your project. Access is restricted to prevent abuse.\n\nParameters\nport: [Integer] The port that Shodan should crawl the Internet for.\nprotocol: [String] The name of the protocol that should be used to interrogate the port. See /shodan/protocols for a list of supported protocols.\n",
+        "operationId": "443eaf3e-edeb-4d9d-8207-47361a46cca0",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "22",
+            "name": "port",
+            "required": true,
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "default": "http",
+            "name": "protocol",
+            "required": false,
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/scans": {
+      "get": {
+        "summary": "Get list of all the created scans",
+        "description": "Returns a listing of all the on-demand scans that are currently active on the account.",
+        "operationId": "4718c7b3-bc65-4c0e-a595-d275bcb91926",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/scan/Lxu8uAEahnlMEm9r": {
+      "get": {
+        "summary": "Get the status of a scan request",
+        "description": "Check the progress of a previously submitted scan request. Possible values for the status are:\nSUBMITTING\nQUEUE\nPROCESSING\nDONE\n",
+        "operationId": "4c1a9df9-55a1-40fd-a7a2-420ba1e4df9b",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/alert": {
+      "post": {
+        "summary": "Create an alert to monitor a network range",
+        "description": "Use this method to create a network alert for a defined IP/ netblock which can be used to subscribe to changes/ events that are discovered within that range.\n\nParameters\nThe alert is created by sending a JSON encoded object that has the structure:\n\n{\n    \"name\": {name},\n    \"filters\": {\n        \"ip\": {ip},\n    },\n    \"expires\": {expires},\n}\n\nname: [String] The name to describe the network alert.\nfilters: [Object] An object specifying the criteria that an alert should trigger. The only supported option at the moment is the \"ip\" filter.\nfilters.ip: [String] A list of IPs or network ranges defined using CIDR notation.\nexpires (optional): [Integer] Number of seconds that the alert should be active.",
+        "operationId": "f22ce491-4f7f-4a6a-9e75-7975a0886c84",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"name\":\"DNS Alert\",\"filters\":{\"ip\":[\"8.8.8.8\",\"1.1.1.1\"]},\"expires\":\"0\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/alert/info": {
+      "get": {
+        "summary": "Get a list of all the created alerts",
+        "description": "Returns a listing of all the network alerts that are currently active on the account.\n",
+        "operationId": "cbaae345-8ccb-47df-8307-0803a2dd7bee",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"name\":\"DNS Alert\",\"filters\":{\"ip\":[\"8.8.8.8\",\"1.1.1.1\"]},\"expires\":\"0\"}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/alert/JRH1XDBUA72I9UA3/info": {
+      "get": {
+        "summary": "Get the details for a network alert",
+        "description": "Returns the information about a specific network alert.\n\nParameters\nid: [String] Alert ID",
+        "operationId": "cf223d2f-415b-4dcf-89e9-ff97f3bea4ec",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/alert/JRH1XDBUA72I9UA3": {
+      "delete": {
+        "summary": "Delete an alert",
+        "description": "Remove the specified network alert.\n\n\nParameters\nid: [String] Alert ID",
+        "operationId": "a426007e-ff96-47ea-be06-91e66ca207be",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      },
+      "post": {
+        "summary": "Edit the networks monitored in an alert",
+        "description": "Use this method to edit a network alert with a new list of IPs/ networks to keep track of.\n\nParameters\nThe alert is edited by sending a JSON encoded object that has the structure:\n\n{\n    \"filters\": {\n        \"ip\": {ip},\n    },\n}\n\nfilters: [Object] An object specifying the criteria that an alert should trigger. The only supported option at the moment is the \"ip\" filter.\nfilters.ip: [String] A list of IPs or network ranges defined using CIDR notation.",
+        "operationId": "6830298e-17b9-44b4-8c01-e44798f1f9e6",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "{\"filters\":{\"ip\":\"1.1.1.1\"}}"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/alert/triggers": {
+      "get": {
+        "summary": "Get a list of available triggers",
+        "description": "Returns a list of all the triggers that can be enabled on network alerts.",
+        "operationId": "b1050ef3-b21d-4233-be76-61ce117c07a4",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/alert/JRH1XDBUA72I9UA3/trigger/malware": {
+      "put": {
+        "summary": "Disable a trigger",
+        "description": "Stop getting notifications for the specified trigger.\n\nParameters\nid: [String] Alert ID\ntrigger: [String] Comma-separated list of trigger names",
+        "operationId": "c5d54bae-a1e1-4137-a90a-48ad2983ba5b",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/alert/JRH1XDBUA72I9UA3/trigger/malware/ignore/1.1.1.1:53": {
+      "put": {
+        "summary": "Add to Whitelist",
+        "description": "Ignore the specified service when it is matched for the trigger.\n\nParameters\nid: [String] Alert ID\ntrigger: [String] Comma-separated list of trigger names\nservice: [String] Service specified in the format \"ip:port\" (ex. \"1.1.1.1:80\"",
+        "operationId": "052edaba-70ff-43fa-8e07-264ceeba43c1",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove from Whitelist",
+        "description": "Start getting notifications again for the specified trigger.\n\nParameters\nid: [String] Alert ID\ntrigger: [String] Comma-separated list of trigger names\nservice: [String] Service specified in the format \"ip:port\" (ex. \"1.1.1.1:80\"",
+        "operationId": "74f8ddf0-7187-4690-ac75-bb292e3a734e",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/shodan/alert/JRH1XDBUA72I9UA3/notifier/default": {
+      "put": {
+        "summary": "Add the notifier to the alert",
+        "description": "Add the specified notifier to the network alert. Notifications are only sent if triggers have also been enabled. For each created user, there is a default notifier which will sent via email.\n\nParameters\nid: [String] Alert ID\nnotifier_id: [String] Notifier ID",
+        "operationId": "49f80f8b-df0b-4839-a8e2-0a6086ec7b99",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove the notifier from the alert",
+        "description": "Remove the notification service from the alert. Notifications are only sent if triggers have also been enabled.\n\nParameters\nid: [String] Alert ID\nnotifier_id: [String] Notifier ID",
+        "operationId": "a2fd73ca-2aad-4677-95c8-6321fe3472ec",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/notifier": {
+      "get": {
+        "summary": "List all user-created notifiers",
+        "description": "Get a list of all the notifiers that the user has created.",
+        "operationId": "4e8f9d59-f023-47c0-80da-7c82b8694c96",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new notification service for the user",
+        "description": "Use this method to create a new notification service endpoint that Shodan services can send notifications through.\n\nParameters\nThe parameters depend on the type of notification service that is being created. To get a list of parameters for a provider us the /notifier/provider endpoint. The following parameters always need to be provided:\nprovider: [String] Provider name as returned by /notifier/provider\ndescription: [String] Description of the notifier\n**args: [String] Arguments required by the provider",
+        "operationId": "badc44ee-7475-4627-99af-6da6eb6ffc85",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "email",
+            "name": "provider",
+            "required": true,
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "default": "test@google.de",
+            "name": "to",
+            "required": true,
+            "in": "formData"
+          },
+          {
+            "type": "string",
+            "default": "\"email notification\"",
+            "name": "description",
+            "required": true,
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/notifier/provider": {
+      "get": {
+        "summary": "List of available notification providers",
+        "description": "Get a list of all the notification providers that are available and the parameters to submit when creating them.",
+        "operationId": "5fa6ee11-275a-48d3-aed8-4db9335c159f",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/notifier/ZKJpffUnarJushBf": {
+      "delete": {
+        "summary": "Delete a notification service",
+        "description": "Remove the notification service created for the user.\n\nParameters\nid: [String] Notifier ID",
+        "operationId": "ecdbaca4-2e65-498d-9b54-739d8ffe31da",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      },
+      "get": {
+        "summary": "Edit a notifier",
+        "description": "Use this method to update the parameters of a notifier.\n\nParameters\nThe parameters depend on the type of notification service that is being created. To get a list of parameters for a provider us the /notifier/provider endpoint.\n\nid: [String] Notifier ID\n**args: [String] Arguments required by the provider",
+        "operationId": "e3ab504e-78ba-4aec-a80c-3491be046c59",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "test@google.de",
+            "name": "to",
+            "required": true,
+            "in": "formData"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/dns/domain/google.de": {
+      "get": {
+        "summary": "Domain Information",
+        "description": "Get all the subdomains and other DNS entries for the given domain. Uses 1 query credit per lookup.\n\nParameters\ndomain: [String] Domain name to lookup; example \"cnn.com\"\nhistory (optional): [Boolean] True if historical DNS data should be included in the results (default: False)\ntype (optional): [String] DNS type, possible values are: A, AAAA, CNAME, NS, SOA, MX, TXT\npage (optional): [Integer] The page number to page through results 100 at a time (default: 1)",
+        "operationId": "ab562abd-352b-4872-9e68-49fa70529d2f",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "False",
+            "name": "history",
+            "required": true,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "1",
+            "name": "page",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/dns/resolve": {
+      "get": {
+        "summary": "DNS Lookup",
+        "description": "Look up the IP address for the provided list of hostnames.\n\nParameters\nhostnames: [String] Comma-separated list of hostnames; example \"google.com,bing.com\"",
+        "operationId": "cba7fdab-0ce6-4198-8a93-8a554665f79e",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "google.com,bing.com",
+            "name": "hostnames",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/dns/reverse": {
+      "get": {
+        "summary": "Reverse DNS Lookup",
+        "description": "Look up the hostnames that have been defined for the given list of IP addresses.\n\nParameters\nips: [String] Comma-separated list of IP addresses; example \"74.125.227.230,204.79.197.200\"",
+        "operationId": "e27c6174-a190-4419-89b8-ed9338e932bd",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "1.1.1.1,8.8.8.8",
+            "name": "ips",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/tools/httpheaders": {
+      "get": {
+        "summary": "HTTP Headers",
+        "description": "Shows the HTTP headers that your client sends when connecting to a webserver.",
+        "operationId": "f0690b61-b1e1-4904-ae60-8017bde76281",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    },
+    "/tools/myip": {
+      "get": {
+        "summary": "My IP Address",
+        "description": "Get your current IP address as seen from the Internet.",
+        "operationId": "771d80aa-877e-419e-9eb2-54822342c20a",
+        "parameters": [
+          {
+            "type": "string",
+            "default": "your_api_key",
+            "name": "key",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "no response description was provided for this operation"
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}
