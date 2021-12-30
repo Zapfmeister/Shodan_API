@@ -1,0 +1,275 @@
+{
+  "info": {
+    "name": "shodan",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Host Information",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://api.shodan.io/shodan/host/{{ip}}?key={{apikey}}",
+          "query": [
+            {
+              "key": "key",
+              "value": "{{apikey}}",
+              "disabled": false,
+              "description": null
+            }
+          ],
+          "protocol": "https",
+          "host": [
+            "api",
+            "shodan",
+            "io"
+          ],
+          "port": null,
+          "path": [
+            "shodan",
+            "host",
+            "{{ip}}"
+          ]
+        },
+        "description": "Returns all services that have been found on the given host IP",
+        "header": [],
+        "body": null,
+        "auth": null
+      },
+      "protocolProfileBehavior": {
+        "followRedirects": false,
+        "followOriginalHttpMethod": false,
+        "followAuthorizationHeader": false
+      },
+      "response": []
+    },
+    {
+      "name": "Search Shodan without Results",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://api.shodan.io/shodan/host/count?query=port:{{port}}&facets={{facets}}&key={{apikey}}",
+          "query": [
+            {
+              "key": "query",
+              "value": "port:{{port}}",
+              "disabled": false,
+              "description": null
+            },
+            {
+              "key": "facets",
+              "value": "{{facets}}",
+              "disabled": false,
+              "description": null
+            },
+            {
+              "key": "key",
+              "value": "{{apikey}}",
+              "disabled": false,
+              "description": null
+            }
+          ],
+          "protocol": "https",
+          "host": [
+            "api",
+            "shodan",
+            "io"
+          ],
+          "port": null,
+          "path": [
+            "shodan",
+            "host",
+            "count"
+          ]
+        },
+        "description": "This method behaves identical to \"/shodan/host/search\" with the only difference that this method does not return any host results, it only returns the total number of results that matched the query and any facet information that was requested. As a result this method does not consume query credits.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters\n\nfacets (optional): [String] A comma-separated list of properties to get summary information on. Property names can also be in the format of \"property:count\", where \"count\" is the number of facets that will be returned for a property (i.e. \"country:100\" to get the top 100 countries for a search query). Visit the Shodan website's Facet Analysis page for an up-to-date list of available facets:\nhttps://beta.shodan.io/search/facet\n",
+        "header": [],
+        "body": null,
+        "auth": null
+      },
+      "protocolProfileBehavior": {
+        "followRedirects": false,
+        "followOriginalHttpMethod": false,
+        "followAuthorizationHeader": false
+      },
+      "response": []
+    },
+    {
+      "name": "Search Shodan",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://api.shodan.io/shodan/host/search?query=product:{{product}}&facets={{facets}}&key=your_api_key",
+          "query": [
+            {
+              "key": "query",
+              "value": "product:{{product}}",
+              "disabled": false,
+              "description": null
+            },
+            {
+              "key": "facets",
+              "value": "{{facets}}",
+              "disabled": false,
+              "description": null
+            },
+            {
+              "key": "key",
+              "value": "{{apikey}}",
+              "disabled": false,
+              "description": null
+            }
+          ],
+          "protocol": "https",
+          "host": [
+            "api",
+            "shodan",
+            "io"
+          ],
+          "port": null,
+          "path": [
+            "shodan",
+            "host",
+            "search"
+          ]
+        },
+        "description": "Search Shodan using the same query syntax as the website and use facets to get summary information for different properties.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters\n\nfacets (optional): [String] A comma-separated list of properties to get summary information on. Property names can also be in the format of \"property:count\", where \"count\" is the number of facets that will be returned for a property (i.e. \"country:100\" to get the top 100 countries for a search query). Visit the Shodan website's Facet Analysis page for an up-to-date list of available facets:\nhttps://beta.shodan.io/search/facet\n",
+        "header": [],
+        "body": null,
+        "auth": null
+      },
+      "protocolProfileBehavior": {
+        "followRedirects": false,
+        "followOriginalHttpMethod": false,
+        "followAuthorizationHeader": false
+      },
+      "response": []
+    },
+    {
+      "name": "List all search facets",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://api.shodan.io/shodan/host/search/facets?key={{apikey}}",
+          "query": [
+            {
+              "key": "key",
+              "value": "{{apikey}}",
+              "disabled": false,
+              "description": null
+            }
+          ],
+          "protocol": "https",
+          "host": [
+            "api",
+            "shodan",
+            "io"
+          ],
+          "port": null,
+          "path": [
+            "shodan",
+            "host",
+            "search",
+            "facets"
+          ]
+        },
+        "description": "This method returns a list of facets that can be used to get a breakdown of the top values for a property.\n\n",
+        "header": [],
+        "body": null,
+        "auth": null
+      },
+      "protocolProfileBehavior": {
+        "followRedirects": false,
+        "followOriginalHttpMethod": false,
+        "followAuthorizationHeader": false
+      },
+      "response": []
+    },
+    {
+      "name": "List all filters that can be used when searching",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://api.shodan.io/shodan/host/search/filters?key={{apikey}}",
+          "query": [
+            {
+              "key": "key",
+              "value": "{{apikey}}",
+              "disabled": false,
+              "description": null
+            }
+          ],
+          "protocol": "https",
+          "host": [
+            "api",
+            "shodan",
+            "io"
+          ],
+          "port": null,
+          "path": [
+            "shodan",
+            "host",
+            "search",
+            "filters"
+          ]
+        },
+        "description": "This method returns a list of search filters that can be used in the search query.\n\n",
+        "header": [],
+        "body": null,
+        "auth": null
+      },
+      "protocolProfileBehavior": {
+        "followRedirects": false,
+        "followOriginalHttpMethod": false,
+        "followAuthorizationHeader": false
+      },
+      "response": []
+    },
+    {
+      "name": "Break the search query into tokens",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://api.shodan.io/shodan/host/search/tokens?key={{apikey}}&query=product:{{product}}",
+          "query": [
+            {
+              "key": "key",
+              "value": "{{apikey}}",
+              "disabled": false,
+              "description": null
+            },
+            {
+              "key": "query",
+              "value": "product:{{product}}",
+              "disabled": false,
+              "description": null
+            }
+          ],
+          "protocol": "https",
+          "host": [
+            "api",
+            "shodan",
+            "io"
+          ],
+          "port": null,
+          "path": [
+            "shodan",
+            "host",
+            "search",
+            "tokens"
+          ]
+        },
+        "description": "This method lets you determine which filters are being used by the query string and what parameters were provided to the filters.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters",
+        "header": [],
+        "body": null,
+        "auth": null
+      },
+      "protocolProfileBehavior": {
+        "followRedirects": false,
+        "followOriginalHttpMethod": false,
+        "followAuthorizationHeader": false
+      },
+      "response": []
+    }
+  ]
+}
