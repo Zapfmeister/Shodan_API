@@ -5,270 +5,1705 @@
   },
   "item": [
     {
-      "name": "Host Information",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "https://api.shodan.io/shodan/host/{{ip}}?key={{apikey}}",
-          "query": [
-            {
-              "key": "key",
-              "value": "{{apikey}}",
-              "disabled": false,
-              "description": null
-            }
-          ],
-          "protocol": "https",
-          "host": [
-            "api",
-            "shodan",
-            "io"
-          ],
-          "port": null,
-          "path": [
-            "shodan",
-            "host",
-            "{{ip}}"
-          ]
+      "name": "Search Methods",
+      "item": [
+        {
+          "name": "Host Information",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/host/{{ip}}?key={{apikey}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "host",
+                "{{ip}}"
+              ]
+            },
+            "description": "Returns all services that have been found on the given host IP",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
         },
-        "description": "Returns all services that have been found on the given host IP",
-        "header": [],
-        "body": null,
-        "auth": null
-      },
-      "protocolProfileBehavior": {
-        "followRedirects": false,
-        "followOriginalHttpMethod": false,
-        "followAuthorizationHeader": false
-      },
+        {
+          "name": "Search Shodan without Results",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/host/count?query=port:{{port}}&facets={{facets}}&key={{apikey}}",
+              "query": [
+                {
+                  "key": "query",
+                  "value": "port:{{port}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "facets",
+                  "value": "{{facets}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "host",
+                "count"
+              ]
+            },
+            "description": "This method behaves identical to \"/shodan/host/search\" with the only difference that this method does not return any host results, it only returns the total number of results that matched the query and any facet information that was requested. As a result this method does not consume query credits.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters\n\nfacets (optional): [String] A comma-separated list of properties to get summary information on. Property names can also be in the format of \"property:count\", where \"count\" is the number of facets that will be returned for a property (i.e. \"country:100\" to get the top 100 countries for a search query). Visit the Shodan website's Facet Analysis page for an up-to-date list of available facets:\nhttps://beta.shodan.io/search/facet\n",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Search Shodan",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/host/search?query=product:{{product}}&facets={{facets}}&key=your_api_key",
+              "query": [
+                {
+                  "key": "query",
+                  "value": "product:{{product}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "facets",
+                  "value": "{{facets}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "host",
+                "search"
+              ]
+            },
+            "description": "Search Shodan using the same query syntax as the website and use facets to get summary information for different properties.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters\n\nfacets (optional): [String] A comma-separated list of properties to get summary information on. Property names can also be in the format of \"property:count\", where \"count\" is the number of facets that will be returned for a property (i.e. \"country:100\" to get the top 100 countries for a search query). Visit the Shodan website's Facet Analysis page for an up-to-date list of available facets:\nhttps://beta.shodan.io/search/facet\n",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "List all search facets",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/host/search/facets?key={{apikey}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "host",
+                "search",
+                "facets"
+              ]
+            },
+            "description": "This method returns a list of facets that can be used to get a breakdown of the top values for a property.\n\n",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "List all filters that can be used when searching",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/host/search/filters?key={{apikey}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "host",
+                "search",
+                "filters"
+              ]
+            },
+            "description": "This method returns a list of search filters that can be used in the search query.\n\n",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Break the search query into tokens",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/host/search/tokens?key={{apikey}}&query=product:{{product}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "query",
+                  "value": "product:{{product}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "host",
+                "search",
+                "tokens"
+              ]
+            },
+            "description": "This method lets you determine which filters are being used by the query string and what parameters were provided to the filters.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": null,
       "response": []
     },
     {
-      "name": "Search Shodan without Results",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "https://api.shodan.io/shodan/host/count?query=port:{{port}}&facets={{facets}}&key={{apikey}}",
-          "query": [
-            {
-              "key": "query",
-              "value": "port:{{port}}",
-              "disabled": false,
-              "description": null
+      "name": "On Demand Scanning",
+      "item": [
+        {
+          "name": "List all ports that Shodan is crawling on the Internet",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/ports?query=product:{{product}}&facets={{facets}}&key=your_api_key",
+              "query": [
+                {
+                  "key": "query",
+                  "value": "product:{{product}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "facets",
+                  "value": "{{facets}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "ports"
+              ]
             },
-            {
-              "key": "facets",
-              "value": "{{facets}}",
-              "disabled": false,
-              "description": null
-            },
-            {
-              "key": "key",
-              "value": "{{apikey}}",
-              "disabled": false,
-              "description": null
-            }
-          ],
-          "protocol": "https",
-          "host": [
-            "api",
-            "shodan",
-            "io"
-          ],
-          "port": null,
-          "path": [
-            "shodan",
-            "host",
-            "count"
-          ]
+            "description": "This method returns a list of port numbers that the crawlers are looking for.",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
         },
-        "description": "This method behaves identical to \"/shodan/host/search\" with the only difference that this method does not return any host results, it only returns the total number of results that matched the query and any facet information that was requested. As a result this method does not consume query credits.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters\n\nfacets (optional): [String] A comma-separated list of properties to get summary information on. Property names can also be in the format of \"property:count\", where \"count\" is the number of facets that will be returned for a property (i.e. \"country:100\" to get the top 100 countries for a search query). Visit the Shodan website's Facet Analysis page for an up-to-date list of available facets:\nhttps://beta.shodan.io/search/facet\n",
-        "header": [],
-        "body": null,
-        "auth": null
-      },
-      "protocolProfileBehavior": {
-        "followRedirects": false,
-        "followOriginalHttpMethod": false,
-        "followAuthorizationHeader": false
-      },
+        {
+          "name": "List all protocols that can be used when performing on-demand Internet scans via Shodan",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/protocols?query=product:{{product}}&facets={{facets}}&key=your_api_key",
+              "query": [
+                {
+                  "key": "query",
+                  "value": "product:{{product}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "facets",
+                  "value": "{{facets}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "protocols"
+              ]
+            },
+            "description": "This method returns a list of port numbers that the crawlers are looking for.",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Request Shodan to crawl an IP/ netblock Internet scans via Shodan Duplicate",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/scan?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "scan"
+              ]
+            },
+            "description": "Use this method to request Shodan to crawl a network.\n\nRequirements\nThis method uses API scan credits: 1 IP consumes 1 scan credit. You must have a paid API plan (either one-time payment or subscription) in order to use this method.\n\nParameters\nips: [String] A comma-separated list of IPs or netblocks (in CIDR notation) that should get crawled.\nservice: [Array] A list of services that should get scanned, where a service is defined as a [port, protocol].\n",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "disabled": false,
+              "urlencoded": [
+                {
+                  "key": "ips",
+                  "value": "1.1.1.1,8.8.8.8",
+                  "disabled": false,
+                  "description": null
+                }
+              ]
+            },
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Crawl the Internet for a specific port and protocol using Shodan Duplicate (2)",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/scan/internet?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "scan",
+                "internet"
+              ]
+            },
+            "description": "Use this method to request Shodan to crawl the Internet for a specific port.\n\nRequirements\nThis method is restricted to security researchers and companies with a Shodan Enterprise Data license. To apply for access to this method as a researcher, please email jmath@shodan.io with information about your project. Access is restricted to prevent abuse.\n\nParameters\nport: [Integer] The port that Shodan should crawl the Internet for.\nprotocol: [String] The name of the protocol that should be used to interrogate the port. See /shodan/protocols for a list of supported protocols.\n",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "disabled": false,
+              "urlencoded": [
+                {
+                  "key": "port",
+                  "value": "22",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "protocol",
+                  "value": "{{protocol}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ]
+            },
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Get list of all the created scans",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/scans?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "scans"
+              ]
+            },
+            "description": "Returns a listing of all the on-demand scans that are currently active on the account.",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Get the status of a scan request",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/scan/Lxu8uAEahnlMEm9r?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "scan",
+                "Lxu8uAEahnlMEm9r"
+              ]
+            },
+            "description": "Check the progress of a previously submitted scan request. Possible values for the status are:\nSUBMITTING\nQUEUE\nPROCESSING\nDONE\n",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": null,
       "response": []
     },
     {
-      "name": "Search Shodan",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "https://api.shodan.io/shodan/host/search?query=product:{{product}}&facets={{facets}}&key=your_api_key",
-          "query": [
-            {
-              "key": "query",
-              "value": "product:{{product}}",
-              "disabled": false,
-              "description": null
+      "name": "Network Alerts",
+      "item": [
+        {
+          "name": "Create an alert to monitor a network range",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert"
+              ]
             },
-            {
-              "key": "facets",
-              "value": "{{facets}}",
+            "description": "Use this method to create a network alert for a defined IP/ netblock which can be used to subscribe to changes/ events that are discovered within that range.\n\nParameters\nThe alert is created by sending a JSON encoded object that has the structure:\n\n{\n    \"name\": {name},\n    \"filters\": {\n        \"ip\": {ip},\n    },\n    \"expires\": {expires},\n}\n\nname: [String] The name to describe the network alert.\nfilters: [Object] An object specifying the criteria that an alert should trigger. The only supported option at the moment is the \"ip\" filter.\nfilters.ip: [String] A list of IPs or network ranges defined using CIDR notation.\nexpires (optional): [Integer] Number of seconds that the alert should be active.",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": {
+              "mode": "raw",
               "disabled": false,
-              "description": null
+              "raw": "{\"name\":\"DNS Alert\",\"filters\":{\"ip\":[\"8.8.8.8\",\"1.1.1.1\"]},\"expires\":\"0\"}"
             },
-            {
-              "key": "key",
-              "value": "{{apikey}}",
-              "disabled": false,
-              "description": null
-            }
-          ],
-          "protocol": "https",
-          "host": [
-            "api",
-            "shodan",
-            "io"
-          ],
-          "port": null,
-          "path": [
-            "shodan",
-            "host",
-            "search"
-          ]
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
         },
-        "description": "Search Shodan using the same query syntax as the website and use facets to get summary information for different properties.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters\n\nfacets (optional): [String] A comma-separated list of properties to get summary information on. Property names can also be in the format of \"property:count\", where \"count\" is the number of facets that will be returned for a property (i.e. \"country:100\" to get the top 100 countries for a search query). Visit the Shodan website's Facet Analysis page for an up-to-date list of available facets:\nhttps://beta.shodan.io/search/facet\n",
-        "header": [],
-        "body": null,
-        "auth": null
-      },
-      "protocolProfileBehavior": {
-        "followRedirects": false,
-        "followOriginalHttpMethod": false,
-        "followAuthorizationHeader": false
-      },
+        {
+          "name": "Get a list of all the created alerts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert/info?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert",
+                "info"
+              ]
+            },
+            "description": "Returns a listing of all the network alerts that are currently active on the account.\n",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false,
+              "raw": "{\"name\":\"DNS Alert\",\"filters\":{\"ip\":[\"8.8.8.8\",\"1.1.1.1\"]},\"expires\":\"0\"}"
+            },
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Get the details for a network alert",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert/JRH1XDBUA72I9UA3/info?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert",
+                "JRH1XDBUA72I9UA3",
+                "info"
+              ]
+            },
+            "description": "Returns the information about a specific network alert.\n\nParameters\nid: [String] Alert ID",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Delete an alert",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert/JRH1XDBUA72I9UA3?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert",
+                "JRH1XDBUA72I9UA3"
+              ]
+            },
+            "description": "Remove the specified network alert.\n\n\nParameters\nid: [String] Alert ID",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Edit the networks monitored in an alert",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert/JRH1XDBUA72I9UA3?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert",
+                "JRH1XDBUA72I9UA3"
+              ]
+            },
+            "description": "Use this method to edit a network alert with a new list of IPs/ networks to keep track of.\n\nParameters\nThe alert is edited by sending a JSON encoded object that has the structure:\n\n{\n    \"filters\": {\n        \"ip\": {ip},\n    },\n}\n\nfilters: [Object] An object specifying the criteria that an alert should trigger. The only supported option at the moment is the \"ip\" filter.\nfilters.ip: [String] A list of IPs or network ranges defined using CIDR notation.",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false,
+              "raw": "{\"filters\":{\"ip\":\"1.1.1.1\"}}"
+            },
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Get a list of available triggers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert/triggers?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert",
+                "triggers"
+              ]
+            },
+            "description": "Returns a list of all the triggers that can be enabled on network alerts.",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Enable a trigger",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert/JRH1XDBUA72I9UA3/trigger/malware?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert",
+                "JRH1XDBUA72I9UA3",
+                "trigger",
+                "malware"
+              ]
+            },
+            "description": "Get notifications when the specified trigger is met.\n\nParameters\nid: [String] Alert ID\ntrigger: [String] Comma-separated list of trigger names",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Disable a trigger",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert/JRH1XDBUA72I9UA3/trigger/malware?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert",
+                "JRH1XDBUA72I9UA3",
+                "trigger",
+                "malware"
+              ]
+            },
+            "description": "Stop getting notifications for the specified trigger.\n\nParameters\nid: [String] Alert ID\ntrigger: [String] Comma-separated list of trigger names",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Add to Whitelist",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert/JRH1XDBUA72I9UA3/trigger/malware/ignore/{{service}}?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert",
+                "JRH1XDBUA72I9UA3",
+                "trigger",
+                "malware",
+                "ignore",
+                "{{service}}"
+              ]
+            },
+            "description": "Ignore the specified service when it is matched for the trigger.\n\nParameters\nid: [String] Alert ID\ntrigger: [String] Comma-separated list of trigger names\nservice: [String] Service specified in the format \"ip:port\" (ex. \"1.1.1.1:80\"",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Remove from Whitelist",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert/JRH1XDBUA72I9UA3/trigger/malware/ignore/{{service}}?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert",
+                "JRH1XDBUA72I9UA3",
+                "trigger",
+                "malware",
+                "ignore",
+                "{{service}}"
+              ]
+            },
+            "description": "Start getting notifications again for the specified trigger.\n\nParameters\nid: [String] Alert ID\ntrigger: [String] Comma-separated list of trigger names\nservice: [String] Service specified in the format \"ip:port\" (ex. \"1.1.1.1:80\"",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Add the notifier to the alert",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert/JRH1XDBUA72I9UA3/notifier/{{notifier_id}}?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert",
+                "JRH1XDBUA72I9UA3",
+                "notifier",
+                "{{notifier_id}}"
+              ]
+            },
+            "description": "Add the specified notifier to the network alert. Notifications are only sent if triggers have also been enabled. For each created user, there is a default notifier which will sent via email.\n\nParameters\nid: [String] Alert ID\nnotifier_id: [String] Notifier ID",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Remove the notifier from the alert",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "https://api.shodan.io/shodan/alert/JRH1XDBUA72I9UA3/notifier/{{notifier_id}}?key=your_api_key",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "shodan",
+                "alert",
+                "JRH1XDBUA72I9UA3",
+                "notifier",
+                "{{notifier_id}}"
+              ]
+            },
+            "description": "Remove the notification service from the alert. Notifications are only sent if triggers have also been enabled.\n\nParameters\nid: [String] Alert ID\nnotifier_id: [String] Notifier ID",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": null,
       "response": []
     },
     {
-      "name": "List all search facets",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "https://api.shodan.io/shodan/host/search/facets?key={{apikey}}",
-          "query": [
-            {
-              "key": "key",
-              "value": "{{apikey}}",
-              "disabled": false,
-              "description": null
-            }
-          ],
-          "protocol": "https",
-          "host": [
-            "api",
-            "shodan",
-            "io"
-          ],
-          "port": null,
-          "path": [
-            "shodan",
-            "host",
-            "search",
-            "facets"
-          ]
-        },
-        "description": "This method returns a list of facets that can be used to get a breakdown of the top values for a property.\n\n",
-        "header": [],
-        "body": null,
-        "auth": null
-      },
-      "protocolProfileBehavior": {
-        "followRedirects": false,
-        "followOriginalHttpMethod": false,
-        "followAuthorizationHeader": false
-      },
-      "response": []
-    },
-    {
-      "name": "List all filters that can be used when searching",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "https://api.shodan.io/shodan/host/search/filters?key={{apikey}}",
-          "query": [
-            {
-              "key": "key",
-              "value": "{{apikey}}",
-              "disabled": false,
-              "description": null
-            }
-          ],
-          "protocol": "https",
-          "host": [
-            "api",
-            "shodan",
-            "io"
-          ],
-          "port": null,
-          "path": [
-            "shodan",
-            "host",
-            "search",
-            "filters"
-          ]
-        },
-        "description": "This method returns a list of search filters that can be used in the search query.\n\n",
-        "header": [],
-        "body": null,
-        "auth": null
-      },
-      "protocolProfileBehavior": {
-        "followRedirects": false,
-        "followOriginalHttpMethod": false,
-        "followAuthorizationHeader": false
-      },
-      "response": []
-    },
-    {
-      "name": "Break the search query into tokens",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "https://api.shodan.io/shodan/host/search/tokens?key={{apikey}}&query=product:{{product}}",
-          "query": [
-            {
-              "key": "key",
-              "value": "{{apikey}}",
-              "disabled": false,
-              "description": null
+      "name": "Notifiers",
+      "item": [
+        {
+          "name": "List all user-created notifiers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/notifier?key={{apikey}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "notifier"
+              ]
             },
-            {
-              "key": "query",
-              "value": "product:{{product}}",
-              "disabled": false,
-              "description": null
-            }
-          ],
-          "protocol": "https",
-          "host": [
-            "api",
-            "shodan",
-            "io"
-          ],
-          "port": null,
-          "path": [
-            "shodan",
-            "host",
-            "search",
-            "tokens"
-          ]
+            "description": "Get a list of all the notifiers that the user has created.",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
         },
-        "description": "This method lets you determine which filters are being used by the query string and what parameters were provided to the filters.\n\nParameters\nquery: [String] Shodan search query. The provided string is used to search the database of banners in Shodan, with the additional option to provide filters inside the search query using a \"filter:value\" format. For example, the following search query would find Apache Web servers located in Germany: \"apache country:DE\".\nhttps://beta.shodan.io/search/filters",
-        "header": [],
-        "body": null,
-        "auth": null
-      },
-      "protocolProfileBehavior": {
-        "followRedirects": false,
-        "followOriginalHttpMethod": false,
-        "followAuthorizationHeader": false
-      },
+        {
+          "name": "List of available notification providers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/notifier/provider?key={{apikey}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "notifier",
+                "provider"
+              ]
+            },
+            "description": "Get a list of all the notification providers that are available and the parameters to submit when creating them.",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Create a new notification service for the user",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "https://api.shodan.io/notifier?key={{apikey}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "notifier"
+              ]
+            },
+            "description": "Use this method to create a new notification service endpoint that Shodan services can send notifications through.\n\nParameters\nThe parameters depend on the type of notification service that is being created. To get a list of parameters for a provider us the /notifier/provider endpoint. The following parameters always need to be provided:\nprovider: [String] Provider name as returned by /notifier/provider\ndescription: [String] Description of the notifier\n**args: [String] Arguments required by the provider",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "disabled": false,
+              "urlencoded": [
+                {
+                  "key": "provider",
+                  "value": "email",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "to",
+                  "value": "test@google.de",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "description",
+                  "value": "\"email notification\"",
+                  "disabled": false,
+                  "description": null
+                }
+              ]
+            },
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a notification service",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "https://api.shodan.io/notifier/ZKJpffUnarJushBf?key={{apikey}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "notifier",
+                "ZKJpffUnarJushBf"
+              ]
+            },
+            "description": "Remove the notification service created for the user.\n\nParameters\nid: [String] Notifier ID",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "disabled": false,
+              "urlencoded": []
+            },
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Get information about a notifier",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/notifier/ZKJpffUnarJushBf?key={{apikey}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "notifier",
+                "ZKJpffUnarJushBf"
+              ]
+            },
+            "description": "Use this method to create a new notification service endpoint that Shodan services can send notifications through.\n\nParameters\nid: [String] Notifier ID\n",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "disabled": false,
+              "urlencoded": []
+            },
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Edit a notifier",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/notifier/ZKJpffUnarJushBf?key={{apikey}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "notifier",
+                "ZKJpffUnarJushBf"
+              ]
+            },
+            "description": "Use this method to update the parameters of a notifier.\n\nParameters\nThe parameters depend on the type of notification service that is being created. To get a list of parameters for a provider us the /notifier/provider endpoint.\n\nid: [String] Notifier ID\n**args: [String] Arguments required by the provider",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "disabled": false,
+              "urlencoded": [
+                {
+                  "key": "to",
+                  "value": "test@google.de",
+                  "disabled": false,
+                  "description": null
+                }
+              ]
+            },
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": null,
+      "response": []
+    },
+    {
+      "name": "DNS Methods",
+      "item": [
+        {
+          "name": "Domain Information",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/dns/domain/{{domain}}?key={{apikey}}&history=False&page=1",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "history",
+                  "value": "False",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "type",
+                  "value": "A, AAAA, CNAME, NS, SOA, MX, TXT",
+                  "disabled": true,
+                  "description": "Optional. Choose one."
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "dns",
+                "domain",
+                "{{domain}}"
+              ]
+            },
+            "description": "Get all the subdomains and other DNS entries for the given domain. Uses 1 query credit per lookup.\n\nParameters\ndomain: [String] Domain name to lookup; example \"cnn.com\"\nhistory (optional): [Boolean] True if historical DNS data should be included in the results (default: False)\ntype (optional): [String] DNS type, possible values are: A, AAAA, CNAME, NS, SOA, MX, TXT\npage (optional): [Integer] The page number to page through results 100 at a time (default: 1)",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "DNS Lookup",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/dns/resolve?key={{apikey}}&hostnames=google.com,bing.com",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "hostnames",
+                  "value": "{{hostnames}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "dns",
+                "resolve"
+              ]
+            },
+            "description": "Look up the IP address for the provided list of hostnames.\n\nParameters\nhostnames: [String] Comma-separated list of hostnames; example \"google.com,bing.com\"",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Reverse DNS Lookup",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/dns/reverse?key={{apikey}}&ips={{ips}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "ips",
+                  "value": "{{ips}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "dns",
+                "reverse"
+              ]
+            },
+            "description": "Look up the hostnames that have been defined for the given list of IP addresses.\n\nParameters\nips: [String] Comma-separated list of IP addresses; example \"74.125.227.230,204.79.197.200\"",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": null,
+      "response": []
+    },
+    {
+      "name": "Tools",
+      "item": [
+        {
+          "name": "HTTP Headers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/tools/httpheaders?key={{apikey}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "tools",
+                "httpheaders"
+              ]
+            },
+            "description": "Shows the HTTP headers that your client sends when connecting to a webserver.",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "My IP Address",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.shodan.io/tools/myip?key={{apikey}}",
+              "query": [
+                {
+                  "key": "key",
+                  "value": "{{apikey}}",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "https",
+              "host": [
+                "api",
+                "shodan",
+                "io"
+              ],
+              "port": null,
+              "path": [
+                "tools",
+                "myip"
+              ]
+            },
+            "description": "Get your current IP address as seen from the Internet.",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": null,
       "response": []
     }
   ]
